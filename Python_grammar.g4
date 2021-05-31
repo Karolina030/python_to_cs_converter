@@ -1,4 +1,4 @@
-grammar Python3;
+grammar Python_grammar;
 
 //poniższy kod odpowiedzialny jest za obsługę wcięć
 
