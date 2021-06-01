@@ -9,7 +9,6 @@ import org.antlr.v4.runtime.misc.Interval;
 import java.util.*;
 }
 
-
 @lexer::members {
 private Stack<Integer> indentLengths = new Stack<>();
 private LinkedList<Token> pendingTokens = new LinkedList<>();
