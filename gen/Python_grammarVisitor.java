@@ -52,6 +52,18 @@ public interface Python_grammarVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitIf_stmt(Python_grammarParser.If_stmtContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link Python_grammarParser#elif_stmt}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitElif_stmt(Python_grammarParser.Elif_stmtContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link Python_grammarParser#else_stmt}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitElse_stmt(Python_grammarParser.Else_stmtContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link Python_grammarParser#while_stmt}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

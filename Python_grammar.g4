@@ -99,7 +99,7 @@ private void handleEofToken(Token curToken) {
 private void insertLeadingTokens(int type, int startIndex) {
     if (type != NEWLINE && type != EOF) { // (after a whitespace) The first token is visible, so We insert a NEWLINE and an INDENT token before it to raise an 'unexpected indent' error later by the parser
         this.insertToken(0, startIndex - 1, "<inserted leading NEWLINE>" + " ".repeat(startIndex), NEWLINE, 1, 0);
-        this.insertToken(startIndex, startIndex - 1, "<" + TEXT_INSERTED_INDENT + ", " + this.getIndentationDescription(startIndex) + ">", Python3Parser.INDENT, 1, startIndex);
+        this.insertToken(startIndex, startIndex - 1, "<" + TEXT_INSERTED_INDENT + ", " + this.getIndentationDescription(startIndex) + ">", Python_grammarParser.INDENT, 1, startIndex);
         this.indentLengths.push(startIndex);
     }
 }
@@ -107,16 +107,16 @@ private void insertLeadingTokens(int type, int startIndex) {
 private void insertIndentDedentTokens(int curIndentLength) {
     int prevIndentLength = this.indentLengths.peek();
     if (curIndentLength > prevIndentLength) { // insert an INDENT token
-        this.insertToken("<" + TEXT_INSERTED_INDENT + ", " + this.getIndentationDescription(curIndentLength) + ">", Python3Parser.INDENT);
+        this.insertToken("<" + TEXT_INSERTED_INDENT + ", " + this.getIndentationDescription(curIndentLength) + ">", Python_grammarParser.INDENT);
         this.indentLengths.push(curIndentLength);
     } else {
         while (curIndentLength < prevIndentLength) {   // More than 1 DEDENT token may be inserted
             this.indentLengths.pop();
             prevIndentLength = this.indentLengths.peek();
             if (curIndentLength <= prevIndentLength) {
-                this.insertToken("<inserted DEDENT, " + this.getIndentationDescription(prevIndentLength) + ">", Python3Parser.DEDENT);
+                this.insertToken("<inserted DEDENT, " + this.getIndentationDescription(prevIndentLength) + ">", Python_grammarParser.DEDENT);
             } else {
-                this.insertToken("<inserted inconsistent DEDENT, " + "length=" + curIndentLength + ">", Python3Parser.DEDENT);
+                this.insertToken("<inserted inconsistent DEDENT, " + "length=" + curIndentLength + ">", Python_grammarParser.DEDENT);
                 this.errors.add(TEXT_LEXER + "line " + getLine() + ":" + getCharPositionInLine() + "\t IndentationError: unindent does not match any outer indentation level");
             }
         }
@@ -124,12 +124,12 @@ private void insertIndentDedentTokens(int curIndentLength) {
 }
 
 private void insertTrailingTokens(int type) {
-    if (type != NEWLINE && type != Python3Parser.DEDENT) {
+    if (type != NEWLINE && type != Python_grammarParser.DEDENT) {
         this.insertToken("<inserted trailing NEWLINE>", NEWLINE); // insert an extra trailing NEWLINE token that serves as the end of the statement
     }
 
     while (this.indentLengths.size() > 1) {
-        this.insertToken("<inserted trailing DEDENT, " + this.getIndentationDescription(this.indentLengths.pop()) + ">", Python3Parser.DEDENT);
+        this.insertToken("<inserted trailing DEDENT, " + this.getIndentationDescription(this.indentLengths.pop()) + ">", Python_grammarParser.DEDENT);
     }
     this.indentLengths = null; // there will be no more token read from the input stream
 }
@@ -199,7 +199,9 @@ compound_stmt
     | while_stmt
     | for_stmt;
 
-if_stmt: 'if' expr_bool ':' body ('elif' expr_bool ':' body)* ('else' ':' body)?;
+if_stmt: 'if' expr_bool ':' body elif_stmt* else_stmt?;
+elif_stmt: 'elif' expr_bool ':' body;
+else_stmt: 'else' ':' body;
 while_stmt: 'while' expr_bool ':' body;
 for_stmt: 'for' VAR 'in' list ':' body;
 

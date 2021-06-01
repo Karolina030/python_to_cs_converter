@@ -77,6 +77,26 @@ public interface Python_grammarListener extends ParseTreeListener {
 	 */
 	void exitIf_stmt(Python_grammarParser.If_stmtContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link Python_grammarParser#elif_stmt}.
+	 * @param ctx the parse tree
+	 */
+	void enterElif_stmt(Python_grammarParser.Elif_stmtContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link Python_grammarParser#elif_stmt}.
+	 * @param ctx the parse tree
+	 */
+	void exitElif_stmt(Python_grammarParser.Elif_stmtContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link Python_grammarParser#else_stmt}.
+	 * @param ctx the parse tree
+	 */
+	void enterElse_stmt(Python_grammarParser.Else_stmtContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link Python_grammarParser#else_stmt}.
+	 * @param ctx the parse tree
+	 */
+	void exitElse_stmt(Python_grammarParser.Else_stmtContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link Python_grammarParser#while_stmt}.
 	 * @param ctx the parse tree
 	 */
