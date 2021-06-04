@@ -38,6 +38,7 @@ INT=37
 FLOAT=38
 SKIP_=39
 NEWLINE=40
+TAB=41
 'print'=1
 'return '=2
 'def'=3

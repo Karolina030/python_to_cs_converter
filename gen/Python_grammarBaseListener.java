@@ -1,4 +1,4 @@
-// Generated from E:/Programming/python_to_cs_converter\Python_grammar.g4 by ANTLR 4.9.1
+// Generated from /Users/karolinamatuszczyk/projekt_kompilatory/Python_grammar.g4 by ANTLR 4.9.1
 
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
@@ -27,18 +27,6 @@ public class Python_grammarBaseListener implements Python_grammarListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterStmt(Python_grammarParser.StmtContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitStmt(Python_grammarParser.StmtContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterSimple_stmt(Python_grammarParser.Simple_stmtContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -46,6 +34,18 @@ public class Python_grammarBaseListener implements Python_grammarListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitSimple_stmt(Python_grammarParser.Simple_stmtContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterSimple_stmt_line(Python_grammarParser.Simple_stmt_lineContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitSimple_stmt_line(Python_grammarParser.Simple_stmt_lineContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

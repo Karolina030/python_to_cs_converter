@@ -1,4 +1,4 @@
-// Generated from E:/Programming/python_to_cs_converter\Python_grammar.g4 by ANTLR 4.9.1
+// Generated from /Users/karolinamatuszczyk/projekt_kompilatory/Python_grammar.g4 by ANTLR 4.9.1
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 
 /**
@@ -23,14 +23,14 @@ public class Python_grammarBaseVisitor<T> extends AbstractParseTreeVisitor<T> im
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitStmt(Python_grammarParser.StmtContext ctx) { return visitChildren(ctx); }
+	@Override public T visitSimple_stmt(Python_grammarParser.Simple_stmtContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitSimple_stmt(Python_grammarParser.Simple_stmtContext ctx) { return visitChildren(ctx); }
+	@Override public T visitSimple_stmt_line(Python_grammarParser.Simple_stmt_lineContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *

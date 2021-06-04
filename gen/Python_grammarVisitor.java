@@ -1,4 +1,4 @@
-// Generated from E:/Programming/python_to_cs_converter\Python_grammar.g4 by ANTLR 4.9.1
+// Generated from /Users/karolinamatuszczyk/projekt_kompilatory/Python_grammar.g4 by ANTLR 4.9.1
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
 /**
@@ -16,17 +16,17 @@ public interface Python_grammarVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitProgram(Python_grammarParser.ProgramContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link Python_grammarParser#stmt}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitStmt(Python_grammarParser.StmtContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link Python_grammarParser#simple_stmt}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitSimple_stmt(Python_grammarParser.Simple_stmtContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link Python_grammarParser#simple_stmt_line}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSimple_stmt_line(Python_grammarParser.Simple_stmt_lineContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link Python_grammarParser#assignment_stmt}.
 	 * @param ctx the parse tree
