@@ -1,3 +1,5 @@
+import static java.util.stream.Collectors.toList;
+
 public class Python_grammarListenerImpl extends  Python_grammarBaseListener{
     private final CsCodeAssembler csCodeAssembler = new CsCodeAssembler();
 
@@ -12,6 +14,12 @@ public class Python_grammarListenerImpl extends  Python_grammarBaseListener{
     }
 
     @Override
+    public void enterList_assignment_stmt(Python_grammarParser.List_assignment_stmtContext ctx) {
+        String varName = ctx.VAR().getText();
+        csCodeAssembler.addExpression("int[] "+varName + " = " + ctx.variable().stream().map(x->x.getText()).collect(toList()).toString().replace("[","{").replace("]", "}"));
+    }
+
+    @Override
     public void enterIf_stmt(Python_grammarParser.If_stmtContext ctx) {
         csCodeAssembler.addExpression("if (" + ctx.expr_bool().getText() + ") {");
     }
@@ -23,7 +31,7 @@ public class Python_grammarListenerImpl extends  Python_grammarBaseListener{
 
     @Override
     public void enterElif_stmt(Python_grammarParser.Elif_stmtContext ctx) {
-        csCodeAssembler.addExpression("}\nelse if (" + ctx.expr_bool() + ") {");
+        csCodeAssembler.addExpression("}\nelse if (" + ctx.expr_bool().getText() + ") {");
     }
 
     @Override
@@ -40,6 +48,23 @@ public class Python_grammarListenerImpl extends  Python_grammarBaseListener{
     public void exitElse_stmt(Python_grammarParser.Else_stmtContext ctx) {
         csCodeAssembler.addExpression("}");
     }
+
+    @Override
+    public void enterWhile_stmt(Python_grammarParser.While_stmtContext ctx) { csCodeAssembler.addExpression("while (" + ctx.expr_bool().getText() + ") {"); }
+
+    @Override
+    public void exitWhile_stmt(Python_grammarParser.While_stmtContext ctx) { csCodeAssembler.addExpression("}"); }
+
+
+    @Override
+    public void enterFor_stmt(Python_grammarParser.For_stmtContext ctx) {
+        csCodeAssembler.addExpression("foreach (int " + ctx.VAR().get(0) + " in "+ ctx.VAR().get(1) +") {");}
+
+    @Override
+    public void exitFor_stmt(Python_grammarParser.For_stmtContext ctx) { csCodeAssembler.addExpression("}"); }
+
+
+
 
 //    private int testDepth = 0;
 //    private StringBuilder test = new StringBuilder();

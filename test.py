@@ -13,7 +13,8 @@ else:
 print(a)
 print(b)
 
-for x in [1,2,3]:
+list = [1,2,3]
+for x in list:
 	print(x)
 
 a = 2

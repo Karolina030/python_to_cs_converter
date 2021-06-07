@@ -47,6 +47,16 @@ public interface Python_grammarListener extends ParseTreeListener {
 	 */
 	void exitAssignment_stmt(Python_grammarParser.Assignment_stmtContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link Python_grammarParser#list_assignment_stmt}.
+	 * @param ctx the parse tree
+	 */
+	void enterList_assignment_stmt(Python_grammarParser.List_assignment_stmtContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link Python_grammarParser#list_assignment_stmt}.
+	 * @param ctx the parse tree
+	 */
+	void exitList_assignment_stmt(Python_grammarParser.List_assignment_stmtContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link Python_grammarParser#print_stmt}.
 	 * @param ctx the parse tree
 	 */
@@ -116,16 +126,6 @@ public interface Python_grammarListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitFor_stmt(Python_grammarParser.For_stmtContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link Python_grammarParser#list}.
-	 * @param ctx the parse tree
-	 */
-	void enterList(Python_grammarParser.ListContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link Python_grammarParser#list}.
-	 * @param ctx the parse tree
-	 */
-	void exitList(Python_grammarParser.ListContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link Python_grammarParser#variable}.
 	 * @param ctx the parse tree

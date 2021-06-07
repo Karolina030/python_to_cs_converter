@@ -8,11 +8,14 @@ program: (simple_stmt_line |  function | compound_stmt )*;
 simple_stmt
     : assignment_stmt
     | func_call
-    | print_stmt;
+    | print_stmt
+    | list_assignment_stmt;
 
 simple_stmt_line: simple_stmt NEWLINE;
 
 assignment_stmt: VAR '=' expr;
+list_assignment_stmt: VAR '=' '[' (variable ',' )* variable ']';
+
 print_stmt: 'print' '(' expr ')';
 
 compound_stmt
@@ -24,9 +27,9 @@ if_stmt: 'if' expr_bool ':' NEWLINE body elif_stmt* else_stmt?;
 elif_stmt: 'elif' expr_bool ':' NEWLINE body;
 else_stmt: 'else' ':' NEWLINE body;
 while_stmt: 'while' expr_bool ':' NEWLINE body;
-for_stmt: 'for' VAR 'in' list ':'  NEWLINE body;
+for_stmt: 'for' VAR 'in' VAR ':'  NEWLINE body;
 
-list: '[' (variable ',' )* variable ']';
+//list: '[' (variable ',' )* variable ']';
 variable: VAR|INT|FLOAT;
 
 function: func_def NEWLINE func_body;

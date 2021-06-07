@@ -34,6 +34,12 @@ public interface Python_grammarVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitAssignment_stmt(Python_grammarParser.Assignment_stmtContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link Python_grammarParser#list_assignment_stmt}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitList_assignment_stmt(Python_grammarParser.List_assignment_stmtContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link Python_grammarParser#print_stmt}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -75,12 +81,6 @@ public interface Python_grammarVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitFor_stmt(Python_grammarParser.For_stmtContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link Python_grammarParser#list}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitList(Python_grammarParser.ListContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link Python_grammarParser#variable}.
 	 * @param ctx the parse tree

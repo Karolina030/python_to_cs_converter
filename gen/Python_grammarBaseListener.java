@@ -63,6 +63,18 @@ public class Python_grammarBaseListener implements Python_grammarListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterList_assignment_stmt(Python_grammarParser.List_assignment_stmtContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitList_assignment_stmt(Python_grammarParser.List_assignment_stmtContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterPrint_stmt(Python_grammarParser.Print_stmtContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -142,18 +154,6 @@ public class Python_grammarBaseListener implements Python_grammarListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitFor_stmt(Python_grammarParser.For_stmtContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterList(Python_grammarParser.ListContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitList(Python_grammarParser.ListContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
