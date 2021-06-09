@@ -16,7 +16,7 @@ public class Python_grammarListenerImpl extends  Python_grammarBaseListener{
     @Override
     public void enterList_assignment_stmt(Python_grammarParser.List_assignment_stmtContext ctx) {
         String varName = ctx.VAR().getText();
-        csCodeAssembler.addExpression("int[] "+varName + " = " + ctx.variable().stream().map(x->x.getText()).collect(toList()).toString().replace("[","{").replace("]", "}"));
+        csCodeAssembler.addExpression("int[] "+varName + " = " + ctx.variable().stream().map(x->x.getText()).collect(toList()).toString().replace("[","{").replace("]", "};"));
     }
 
     @Override
@@ -64,6 +64,10 @@ public class Python_grammarListenerImpl extends  Python_grammarBaseListener{
     public void exitFor_stmt(Python_grammarParser.For_stmtContext ctx) { csCodeAssembler.addExpression("}"); }
 
 
+    @Override
+    public void enterPrint_stmt(Python_grammarParser.Print_stmtContext ctx) {
+        csCodeAssembler.addExpression("Console.WriteLine("+ ctx.expr().getText()+");");
+    }
 
 
 //    private int testDepth = 0;
