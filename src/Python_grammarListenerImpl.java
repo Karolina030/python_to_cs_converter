@@ -1,7 +1,11 @@
+import java.util.Dictionary;
+import java.util.Hashtable;
+
 import static java.util.stream.Collectors.toList;
 
 public class Python_grammarListenerImpl extends  Python_grammarBaseListener{
     private final CsCodeAssembler csCodeAssembler = new CsCodeAssembler();
+    private final Dictionary<String, String> variables = new Hashtable<>();
 
     public CsCodeAssembler getCode(){
         return csCodeAssembler;
@@ -10,7 +14,14 @@ public class Python_grammarListenerImpl extends  Python_grammarBaseListener{
     @Override
     public void exitAssignment_stmt(Python_grammarParser.Assignment_stmtContext ctx) {
         String varName = ctx.VAR().getText();
-        csCodeAssembler.addVariable(varName + " = " + ctx.expr().getText());
+        String varValue = ctx.expr().getText();
+
+        if (variables.get(varName) != null) {
+            csCodeAssembler.addExpression(varName + " = " + varValue + ";");
+        } else {
+            variables.put(varName, varValue);
+            csCodeAssembler.addExpression("var " + varName + " = " + varValue + ";");
+        }
     }
 
     @Override
@@ -21,7 +32,7 @@ public class Python_grammarListenerImpl extends  Python_grammarBaseListener{
 
     @Override
     public void enterIf_stmt(Python_grammarParser.If_stmtContext ctx) {
-        csCodeAssembler.addExpression("if (" + ctx.expr_bool().getText() + ") {");
+        csCodeAssembler.addExpression("if (" + ctx.expr_bool().getText().replace("or", " || ").replace("and", " && ").replace("not ", "!") + ") {");
     }
 
     @Override
