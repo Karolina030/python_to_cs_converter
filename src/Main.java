@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        File file = new File("test.py");
+        File file = new File("test1.py");
 
         StringBuilder input = new StringBuilder();
 

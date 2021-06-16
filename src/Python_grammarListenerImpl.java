@@ -55,7 +55,7 @@ public class Python_grammarListenerImpl extends  Python_grammarBaseListener{
 
     @Override
     public void enterElif_stmt(Python_grammarParser.Elif_stmtContext ctx) {
-        addExpression("}\nelse if (" + ctx.expr_bool().getText() + ") {");
+        addExpression("}\nelse if (" + ctx.expr_bool().getText().replace("or", " || ").replace("and", " && ").replace("not ", "!") + ") {");
     }
 
     @Override
