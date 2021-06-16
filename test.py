@@ -33,6 +33,6 @@ def funkcja(a,c):
 	c=a+1
 	k = 5
 	return a
-
 b = funkcja(1,6)
+
 print(b)

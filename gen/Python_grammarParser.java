@@ -341,6 +341,7 @@ public class Python_grammarParser extends Parser {
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
+//		public TerminalNode getType() {return getRuleContext(Python_grammarParser.VAR.getC)}
 		public Assignment_stmtContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -980,6 +981,11 @@ public class Python_grammarParser extends Parser {
 		public FunctionContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
+		public TerminalNode def() {return getToken(Python_grammarParser.RULE_func_def,0);};
+//		public TerminalNode leftP() {return getToken(Python_grammarParser.RULE_L,0);};
+//		RULE_func_name = 15, RULE_func_body = 16, RULE_func_ret = 17, RULE_func_args = 18,
+//		RULE_func_invoke_args = 19, RULE_func_call = 20
+
 		@Override public int getRuleIndex() { return RULE_function; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {

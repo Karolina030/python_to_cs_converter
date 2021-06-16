@@ -382,5 +382,6 @@ public class Python_grammarBaseListener implements Python_grammarListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+
 	@Override public void visitErrorNode(ErrorNode node) { }
 }

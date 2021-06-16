@@ -1,5 +1,6 @@
 import java.util.Dictionary;
 import java.util.Hashtable;
+import java.util.List;
 
 import static java.util.stream.Collectors.toList;
 
@@ -7,7 +8,7 @@ public class Python_grammarListenerImpl extends  Python_grammarBaseListener{
     private final CsCodeAssembler csCodeAssembler = new CsCodeAssembler();
     private final Dictionary<String, String> variables = new Hashtable<>();
     private int tabs = 0;
-
+    private String last_f_name = "";
     public CsCodeAssembler getCode(){
         return csCodeAssembler;
     }
@@ -92,6 +93,60 @@ public class Python_grammarListenerImpl extends  Python_grammarBaseListener{
         addExpression("Console.WriteLine("+ ctx.expr().getText()+");");
     }
 
+//    @Override
+//    public void enterFunction(Python_grammarParser.FunctionContext ctx) {
+//        addExpression(ctx.getParent().getText());
+//    }
+//
+
+    @Override
+    public void enterFunction(Python_grammarParser.FunctionContext ctx) {
+    }
+
+    @Override
+    public void exitFunction(Python_grammarParser.FunctionContext ctx) {
+        addExpression("}");
+   }
+
+
+
+    @Override
+    public void enterFunc_args(Python_grammarParser.Func_argsContext ctx) {
+        List args = ctx.VAR();
+        String exp = "public dynamic " + last_f_name +"(";
+        Class type = args.get(0).getClass();
+        for (int i = 0; i < args.size(); i++) {
+            exp += args.get(i);
+            if(i<args.size()-1){
+                exp += ",";
+            }
+        }
+        exp += ") {";
+        addExpression(exp);
+    }
+
+
+    @Override
+    public void enterFunc_name(Python_grammarParser.Func_nameContext ctx) {
+        last_f_name = ctx.VAR().getText();
+    }
+
+    @Override public void exitFunc_name(Python_grammarParser.Func_nameContext ctx) {
+    }
+
+
+    @Override
+    public void enterFunc_ret(Python_grammarParser.Func_retContext ctx) {
+        addExpression("\treturn " + ctx.expr().getText() +";");
+    }
+
+    @Override
+    public void exitFunc_ret(Python_grammarParser.Func_retContext ctx) {
+
+    }
+
+
+
     private void addExpression(String expression){
         csCodeAssembler.addExpression(getTabs() + expression);
     }
@@ -99,4 +154,8 @@ public class Python_grammarListenerImpl extends  Python_grammarBaseListener{
     private String getTabs(){
         return "\t".repeat(tabs);
     }
+
+
+
+
 }
